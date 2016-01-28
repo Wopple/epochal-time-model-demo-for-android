@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.iheartradio.hack.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APP"
+                android:textSize="16dp"
+                />
+
+            <TextView
+                android:id="@+id/app_is_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/app_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/app_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/app_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHROMECAST"
+                android:textSize="16dp"
+                />
+
+            <TextView
+                android:id="@+id/cast_is_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/cast_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/cast_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/cast_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/cast_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/delay_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/delay_bar"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:id="@+id/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="play"
+                />
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="stop"
+                />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="next"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/delay_bar"
+            >
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clear"
+                />
+
+            <Button
+                android:id="@+id/grenade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="grenade"
+                />
+
+            <Button
+                android:id="@+id/roar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="roar"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/delay_bar"
+            >
+            <Button
+                android:id="@+id/ktu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ktu"
+                />
+
+            <Button
+                android:id="@+id/mars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mars"
+                />
+
+            <Button
+                android:id="@+id/perry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="perry"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

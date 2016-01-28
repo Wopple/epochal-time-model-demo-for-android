@@ -1,0 +1,61 @@
+gradle/
+gradlew
+gradlew.bat
+
+# Android Studio
+.idea/
+*.iml
+
+
+
+# gradle
+/.gradle/
+/*/gradle-build/
+/Build/exploded-aar/
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+out/
+/Build/intermediates/
+
+# swap files
+.swp
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Mac garbage
+.DS_Store
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Mac garbage
+.DS_Store
+
+# settings
+.settings/
+
+.crashlytics_data
+
+com_crashlytics_export_strings.xml
+
+# IntelliJ/Android Studio files
+.idea/
+
+out/
+
+build/
+
+idea-chromecast/workspace.xml
