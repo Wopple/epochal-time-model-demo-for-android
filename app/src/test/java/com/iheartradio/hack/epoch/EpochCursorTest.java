@@ -6,13 +6,14 @@ import static org.junit.Assert.*;
 
 public class EpochCursorTest {
     @Test
-    public void testSomething() throws Exception {
+    public void test() throws Exception {
         Parent parent = new Parent(new Child(1), 2);
-        Identity<Child> childCursor = new ChildCursor(new EpochIdentity<>(parent));
+        EpochIdentity<Parent> parentIdentity = new EpochIdentity<>(parent);
+        Identity<Child> childCursor = new ChildCursor(parentIdentity);
 
         assertEquals(1, childCursor.get().childValue);
         assertEquals(3, childCursor.update(child -> new Child(child.childValue + 2)).childValue);
-        assertEquals(3, childCursor.get().childValue);
+        assertEquals(3, parentIdentity.get().child.childValue);
     }
 
     private static class Parent {
