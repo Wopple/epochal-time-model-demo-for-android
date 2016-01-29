@@ -37,8 +37,13 @@ public class CastThread {
                 if (castState.get().station != NO_STATION) {
                     Track prevTrack = (Track) message.payload;
                     Track next = nextTrack.apply(prevTrack);
-                    process(castState.update(state -> state.buildUpon().setTrack(next).build(),
-                                             (previous, current) -> current.track.equals(prevTrack)));
+                    PlayerState nextState = castState.update(state -> state.buildUpon().setTrack(next).build(),
+                                                             (previous, current) -> current.track.equals(prevTrack));
+                    process(nextState);
+
+                    if (nextState.isPlaying) {
+                        startTimer();
+                    }
                 }
                 break;
             case PLAY:
@@ -56,10 +61,10 @@ public class CastThread {
                 process(castState.update(state -> state.buildUpon()
                         .setStation(station)
                         .setTrack(first)
+                        .setIsPlaying(true)
                         .build()));
-                break;
-            case SET_TRACK:
-                process(castState.update(state -> state.buildUpon().setTrack((Track) message.payload).build()));
+
+                startTimer();
                 break;
             case SYNC:
                 render(castState.update(state -> (PlayerState) message.payload));
@@ -68,10 +73,6 @@ public class CastThread {
     }
 
     private static void process(PlayerState playerState) {
-        if (playerState == null) {
-            playerState = castState.get();
-        }
-
         render(playerState);
         sync(playerState);
     }
@@ -85,6 +86,7 @@ public class CastThread {
     }
 
     private static void startTimer() {
+        stopTimer();
         sNextTimer = new SteadyTimer.Builder()
                 .withDelay(TIMER_RATE)
                 .withRate(TIMER_RATE)

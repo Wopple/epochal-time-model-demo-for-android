@@ -25,6 +25,6 @@ public class SpinLock<T> {
             }
         }
 
-        return null;
+        return value;
     }
 }
