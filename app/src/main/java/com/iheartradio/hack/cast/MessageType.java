@@ -8,4 +8,5 @@ public enum MessageType {
     NEXT,
     SET_STATION,
     SET_TRACK,
+    TRANSACTION,
 }

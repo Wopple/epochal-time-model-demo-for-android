@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private View mStop;
     private View mNext;
 
-    private View mClear;
-    private View mGrenade;
-    private View mRoar;
-
     private View mKtu;
     private View mMars;
     private View mPerry;
@@ -60,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
         mStop = findViewById(R.id.stop);
         mNext = findViewById(R.id.next);
 
-        mClear = findViewById(R.id.clear);
-        mGrenade = findViewById(R.id.grenade);
-        mRoar = findViewById(R.id.roar);
-
         mKtu = findViewById(R.id.ktu);
         mMars = findViewById(R.id.mars);
         mPerry = findViewById(R.id.perry);
@@ -84,52 +76,26 @@ public class MainActivity extends AppCompatActivity {
 
         mPlay.setOnClickListener(v -> {
             CastPipe.sendToCast(new Message(MessageType.PLAY));
-            renderApp(appState.update(state -> state.buildUpon().setIsPlaying(true).build()));
         });
 
         mStop.setOnClickListener(v -> {
             CastPipe.sendToCast(new Message(MessageType.STOP));
-            renderApp(appState.update(state -> state.buildUpon().setIsPlaying(false).build()));
         });
 
         mNext.setOnClickListener(v -> {
-            CastPipe.sendToCast(new Message(MessageType.NEXT));
-        });
-
-        mClear.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setTrack(NO_TRACK).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_TRACK, updatedState.track));
-            renderApp(updatedState);
-        });
-
-        mGrenade.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setTrack(GRENADE_TRACK).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_TRACK, updatedState.track));
-            renderApp(updatedState);
-        });
-
-        mRoar.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setTrack(ROAR_TRACK).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_TRACK, updatedState.track));
-            renderApp(updatedState);
+            CastPipe.sendToCast(new Message(MessageType.NEXT, appState.get().track));
         });
 
         mKtu.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setStation(KTU_STATION).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_STATION, updatedState.station));
-            renderApp(updatedState);
+            CastPipe.sendToCast(new Message(MessageType.SET_STATION, KTU_STATION));
         });
 
         mMars.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setStation(BRUNO_MARS_STATION).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_STATION, updatedState.station));
-            renderApp(updatedState);
+            CastPipe.sendToCast(new Message(MessageType.SET_STATION, BRUNO_MARS_STATION));
         });
 
         mPerry.setOnClickListener(v -> {
-            PlayerState updatedState = appState.update(state -> state.buildUpon().setStation(KATY_PERRY_STATION).build());
-            CastPipe.sendToCast(new Message(MessageType.SET_STATION, updatedState.station));
-            renderApp(updatedState);
+            CastPipe.sendToCast(new Message(MessageType.SET_STATION, KATY_PERRY_STATION));
         });
     }
 
@@ -165,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleApp(final Message message) {
         switch (message.type) {
+            case SYNC:
+                renderApp(appState.set((PlayerState) message.payload));
+                break;
             case RENDER_CAST:
                 renderCast((PlayerState) message.payload);
                 break;
@@ -189,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
             final TextView title,
             final TextView description,
             final ImageView image) {
-
         if (playerState.station == NO_STATION) {
             isPlaying.setText(isPlayingString(false));
             station.setText("");

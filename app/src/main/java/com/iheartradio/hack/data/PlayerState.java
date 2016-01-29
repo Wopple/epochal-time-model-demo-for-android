@@ -4,32 +4,13 @@ public class PlayerState {
     public final Station station;
     public final Track track;
     public final boolean isPlaying;
+    public final long millis;
 
-    public PlayerState(final Station station, final Track track, final boolean isPlaying) {
+    public PlayerState(final Station station, final Track track, final boolean isPlaying, final long millis) {
         this.station = station;
         this.track = track;
         this.isPlaying = isPlaying;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        final PlayerState that = (PlayerState) o;
-
-        if (isPlaying != that.isPlaying) return false;
-        if (!station.equals(that.station)) return false;
-        return track.equals(that.track);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = station.hashCode();
-        result = 31 * result + track.hashCode();
-        result = 31 * result + (isPlaying ? 1 : 0);
-        return result;
+        this.millis = millis;
     }
 
     public Builder buildUpon() {
@@ -40,6 +21,7 @@ public class PlayerState {
         private Station mStation;
         private Track mTrack;
         private boolean mIsPlaying;
+        private long mMillis;
 
         public Builder() {
         }
@@ -48,6 +30,7 @@ public class PlayerState {
             mStation = state.station;
             mTrack = state.track;
             mIsPlaying = state.isPlaying;
+            mMillis = state.millis;
         }
 
         public Builder setStation(final Station station) {
@@ -66,7 +49,7 @@ public class PlayerState {
         }
 
         public PlayerState build() {
-            return new PlayerState(mStation, mTrack, mIsPlaying);
+            return new PlayerState(mStation, mTrack, mIsPlaying, mMillis);
         }
     }
 }

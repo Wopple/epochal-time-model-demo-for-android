@@ -113,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/delay_bar"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -147,34 +148,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/delay_bar"
-            >
-            <Button
-                android:id="@+id/clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="clear"
-                />
-
-            <Button
-                android:id="@+id/grenade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="grenade"
-                />
-
-            <Button
-                android:id="@+id/roar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="roar"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/delay_bar"
             >
             <Button
                 android:id="@+id/ktu"
